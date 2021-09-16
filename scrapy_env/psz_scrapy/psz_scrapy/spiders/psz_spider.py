@@ -46,7 +46,7 @@ class PszSpider(scrapy.Spider):
             elif 'Uknjiženo' in left:
                 uknjizenost = right
                 break
-            elif 'Godina' in left:
+            elif 'Godina izgradnje' in left:
                 godina_izgradnje = right
                 break
             # elif 'soba' in left:
@@ -87,7 +87,7 @@ class PszSpider(scrapy.Spider):
                 'grad': grad,
                 'deo_grada': deo_grada,
                 'kvadratura': kvadratura,
-              #  'godina_izgradnje': godina_izgradnje,
+                'godina_izgradnje': '-',
                 'povrsina_zemljista': povrsina_zemljista,
                 'uknjizenost': uknjizenost,
                 'stanje_nekretnine': stanje_nekretnine,
@@ -106,7 +106,7 @@ class PszSpider(scrapy.Spider):
                 'grad': grad,
                 'deo_grada': deo_grada,
                 'kvadratura': kvadratura,
-              #  'godina_izgradnje': godina_izgradnje,
+                'godina_izgradnje': godina_izgradnje,
                 'uknjizenost': uknjizenost,
                 'stanje_nekretnine': stanje_nekretnine,
                 'ukupna_spratnost': ukupna_spratnost,
