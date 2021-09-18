@@ -87,7 +87,7 @@ class PszSpider(scrapy.Spider):
                 'grad': grad,
                 'deo_grada': deo_grada,
                 'kvadratura': kvadratura,
-                'godina_izgradnje': '-',
+                'godina_izgradnje': godina_izgradnje,
                 'povrsina_zemljista': povrsina_zemljista,
                 'uknjizenost': uknjizenost,
                 'stanje_nekretnine': stanje_nekretnine,
