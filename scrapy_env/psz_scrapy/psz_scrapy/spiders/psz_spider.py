@@ -29,7 +29,7 @@ class PszSpider(scrapy.Spider):
         stanje_nekretnine = '-'
         uknjizenost = 'Ne'
         godina_izgradnje = '-'
-        povrsina_zemljista = '-' # samo za kuce
+        povrsina_zemljista = '-' 
         ukupna_spratnost = '-' 
         broj_kupatila = '1'
       #  broj_soba = '-'
@@ -71,6 +71,10 @@ class PszSpider(scrapy.Spider):
         terasa = 'Ne'
         lift = 'Ne'
         podrum = 'Ne'
+        
+        sprat = response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get().split('/')[0].strip()  if response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get() is not None else '-' # samo za stanove
+        ukupna_spratnost = response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get().split('/')[1].strip() if response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get() is not None else '-' # samo za stanove
+
         if dodatno is not None:
             if (('Terasa' in dodatno) or ('Balkon' in dodatno)):
                 terasa = 'Da'
@@ -91,14 +95,17 @@ class PszSpider(scrapy.Spider):
                 'povrsina_zemljista': povrsina_zemljista,
                 'uknjizenost': uknjizenost,
                 'stanje_nekretnine': stanje_nekretnine,
+                'ukupna_spratnost': ukupna_spratnost,
+                'sprat': sprat,
                 'broj_kupatila': broj_kupatila,
                 'broj_soba': broj_soba,
                 'grejanje': grejanje,
-                'parking': parking
+                'parking': parking,
+                'terasa' : terasa,
+                'lift' : lift,
+                'podrum' : podrum
             }
         elif (tip_nekretnine == 'stanovi'):
-            sprat = response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get().split('/')[0].strip()  if response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get() is not None else '-' # samo za stanove
-            ukupna_spratnost = response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get().split('/')[1].strip() if response.xpath('/html/body/div[6]/div[7]/div/div[1]/div[4]/div/ul/li[5]/span/text()').get() is not None else '-' # samo za stanove
             yield {
                 'tip_nekretnine': 'Stan',
                 'tip_ponude':  tip_ponude,
